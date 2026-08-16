@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Stack Thumbs</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo"><img src="../icons/icon48.png" alt="Stack"></div>
+        <div class="brand-text">
+          <div class="brand-name">Stack Thumbs <span class="brand-tier">YT</span></div>
+          <div class="brand-version" id="brandVersion">v?.?.?</div>
+        </div>
+      </div>
+      <button type="button" class="icon-button" id="refresh-button" title="Detectar thumbnails da tela">
+        <span aria-hidden="true">🔄</span>
+        <span class="sr-only">Atualizar lista</span>
+      </button>
+    </header>
+
+    <div class="controls">
+      <div class="status-bar status-idle" id="status-bar">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-bar__text" id="page-context">Analisando a aba atual…</span>
+      </div>
+
+      <fieldset class="segmented" id="mode-group">
+        <legend class="sr-only">Modo de captura</legend>
+        <label class="segmented__option">
+          <input type="radio" name="capture-mode" value="visible" checked>
+          <span>Visíveis na tela</span>
+        </label>
+        <label class="segmented__option">
+          <input type="radio" name="capture-mode" value="all">
+          <span>Todos carregados</span>
+        </label>
+      </fieldset>
+
+      <p class="stats" id="stats" role="status" aria-live="polite">Detectando vídeos…</p>
+
+      <div class="toolbar" id="toolbar" hidden>
+        <button type="button" class="link-button" id="select-all">Selecionar todas</button>
+        <button type="button" class="link-button" id="deselect-all">Desmarcar todas</button>
+        <button type="button" class="link-button" id="copy-selected">Copiar URLs</button>
+      </div>
+
+      <label class="switch" id="zip-row" hidden>
+        <input type="checkbox" class="switch__input" id="zip-toggle" checked>
+        <span class="checkbox" aria-hidden="true"></span>
+        <span class="switch__label">Baixar tudo em um único <code>.zip</code></span>
+      </label>
+    </div>
+
+    <main class="content">
+      <ul class="list" id="list" hidden></ul>
+
+      <div class="state" id="state-panel">
+        <div class="spinner" id="state-spinner" hidden aria-hidden="true"></div>
+        <p class="state__title" id="state-title">Detectando vídeos…</p>
+        <p class="state__hint" id="state-hint"></p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <button type="button" class="btn btn-ghost" id="refresh-footer">Atualizar lista</button>
+      <button type="button" class="btn btn-primary" id="download-selected" disabled>
+        Baixar selecionadas
+      </button>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </div>
+
+  <template id="item-template">
+    <li class="item">
+      <label class="item__select">
+        <input type="checkbox" class="item__checkbox">
+        <span class="checkbox" aria-hidden="true"></span>
+      </label>
+
+      <div class="item__thumb">
+        <img class="item__image" alt="" referrerpolicy="no-referrer">
+        <span class="item__position"></span>
+      </div>
+
+      <div class="item__body">
+        <p class="item__title"></p>
+        <p class="item__meta">
+          <span class="item__resolution">verificando…</span>
+          <span class="item__badge" hidden></span>
+        </p>
+        <div class="item__actions">
+          <button type="button" class="chip item__download">Baixar</button>
+          <button type="button" class="chip item__copy">Copiar URL</button>
+        </div>
+      </div>
+    </li>
+  </template>
+
+  <script src="../shared/protocol.js"></script>
+  <script src="../shared/youtube.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

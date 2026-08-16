@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Montagem do ZIP</title>
+</head>
+<body>
+  <!--
+    Documento invisível, criado sob demanda pelo service worker.
+    Existe por um único motivo: service workers do MV3 não têm
+    URL.createObjectURL, então alguém precisa gerar a blob URL do ZIP.
+  -->
+  <script src="../shared/protocol.js"></script>
+  <script src="../shared/filename.js"></script>
+  <script src="../shared/zip.js"></script>
+  <script src="offscreen.js"></script>
+</body>
+</html>
